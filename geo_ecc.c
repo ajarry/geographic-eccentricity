@@ -35,7 +35,7 @@
 #include <string.h>
 #include <time.h>
 
-int size=2500;      /* Number of nodes. */
+int size=2500; /* Number of nodes. */
 
 double* x; /* x coordinates of the nodes */
 double* y; /* y coordinates of the nodes */
@@ -46,7 +46,7 @@ double* y; /* y coordinates of the nodes */
 int model = SINR;   /* communication model */
 double p = 0.004;   /* link probability for the RAND model */
 double r_min = 1;   /* minimum range for the SINR model */
-double r_max = 5; /* maximum range for the SINR model */
+double r_max = 5;   /* maximum range for the SINR model */
 double r_avg = 1.7; /* average range for the EXP model before truncation. */
 
 double r_err = 0;    /* standard error */ 
@@ -110,7 +110,7 @@ void init() {
    * adjacency lists will take up to 2*(3n-6) slots. However, we need an
    * additional slot per vertex in our implementation (see function
    * init_voronoi), which makes (7n-12) required slots. */
-  delaunay_dat[0] = (int*) safe_malloc(sizeof(int)*(7*size-12)); // 2*(3n-6)
+  delaunay_dat[0] = (int*) safe_malloc(sizeof(int)*(7*size-12));
 }
 
 /****************************************************
@@ -125,7 +125,7 @@ void init_matrix() {
   for (c=size*(size-1)/2-1; c>=0; c--) matrix[c] = size;
 }
 /*
- * Index of the matrix cell that correspons to the distance (u,v). The contract
+ * Index of the matrix cell that corresponds to the distance (u,v). The contract
  * is that u and v have to be distinct.
  */
 #define c(u,v) (u<v? v*(v-1)/2+u : u*(u-1)/2+v)
@@ -370,7 +370,7 @@ void init_voronoi() {
   for (u=0; u<size; u++) {
     delaunay_dat[u] = delaunay_dat[0] + sum;
     /* degree[u] is the number of triangles in which u appears,
-     * which is exactly the degree of u UNLESS U IS ON THE OUTER FACE.
+     * which is exactly the degree of u unless it is on the outer face.
      * The actual degree of u is thus between degree[u] and degree[u]+1.
      * We overestimate the total needed space by less than /size/. */
     sum += degree[u]+1; 
